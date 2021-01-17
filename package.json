@@ -33,7 +33,10 @@
     "extends": [
       "wesbos",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "react/prop-types": [0]
+    }
   },
   "browserslist": {
     "production": [
