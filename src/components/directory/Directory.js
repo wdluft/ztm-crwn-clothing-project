@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { Component } from 'react';
 import MenuItem from '../menu-item/MenuItem';
 import './directory-styles.scss';
@@ -48,8 +49,8 @@ export default class Directory extends Component {
     const { sections } = this.state;
     return (
       <div className="directory-menu">
-        {sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        {sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
