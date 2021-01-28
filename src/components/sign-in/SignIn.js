@@ -1,9 +1,24 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import CustomButton from '../custom-button/CustomButton';
 import FormInput from '../form-input/FormInput';
-import './sign-in-styles.scss';
 import { auth, signInWithGoogle } from '../../firebase/firebaseUtils';
+
+const SignInContainer = styled.div`
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -36,7 +51,7 @@ export default class SignIn extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="sign-in">
+      <SignInContainer>
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
 
@@ -64,7 +79,7 @@ export default class SignIn extends Component {
             </CustomButton>
           </div>
         </form>
-      </div>
+      </SignInContainer>
     );
   }
 }

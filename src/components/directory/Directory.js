@@ -1,17 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { createStructuredSelector } from 'reselect';
 import MenuItem from '../menu-item/MenuItem';
-import './directory-styles.scss';
 import { selectDirectorySections } from '../../redux/directory/directory-selectors';
 
+const DirectoryContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
 const Directory = ({ sections }) => (
-  <div className="directory-menu">
+  <DirectoryContainer>
     {sections.map(({ id, ...otherSectionProps }) => (
       <MenuItem key={id} {...otherSectionProps} />
     ))}
-  </div>
+  </DirectoryContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
