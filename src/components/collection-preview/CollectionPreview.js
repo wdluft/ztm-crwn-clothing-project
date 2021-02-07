@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import CollectionItem from '../collection-item/CollectionItem';
 
 const CollectionPreviewContainer = styled.div`
@@ -11,6 +14,7 @@ const CollectionPreviewContainer = styled.div`
   .title {
     font-size: 28px;
     margin-bottom: 25px;
+    cursor: pointer;
   }
 
   .preview {
@@ -19,9 +23,14 @@ const CollectionPreviewContainer = styled.div`
   }
 `;
 
-const CollectionPreview = ({ title, items }) => (
+const CollectionPreview = ({ title, items, history, match, routeName }) => (
   <CollectionPreviewContainer>
-    <h1 className="title">{title.toUpperCase()}</h1>
+    <h1
+      className="title"
+      onClick={() => history.push(`${match.path}/${routeName}`)}
+    >
+      {title.toUpperCase()}
+    </h1>
     <div className="preview">
       {items
         .filter((item, i) => i < 4)
@@ -32,4 +41,4 @@ const CollectionPreview = ({ title, items }) => (
   </CollectionPreviewContainer>
 );
 
-export default CollectionPreview;
+export default withRouter(CollectionPreview);
